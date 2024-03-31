@@ -1,0 +1,37 @@
+<div class="flex w-full h-full align-items-center justify-content-center p-4 ">
+  <div class="grid w-full h-full  border-transparent cardCss ">
+    <div class="col-7 ">
+      <div
+        class="text-center p-3 border-round-sm h-full flex flex-column justify-content-center align-items-center font-bold gap-4"
+      >
+        <label class="text-6xl">Sign Up</label>
+        <div class="flex flex-column gap-2 w-6">
+          <label for="username" class="text-left text-500 text-sm ">Name</label>
+  
+          <input pInputText id="username" [(ngModel)]="username"  placeholder="Enter name" aria-describedby="username-help" />
+         
+        </div>
+        <div class="flex flex-column gap-2 w-6">
+          <label class="text-left text-500 text-sm" for="email">Email</label>
+          <input pInputText id="email" [(ngModel)]="email"  placeholder="Enter email" aria-describedby="email-help" />
+         
+        </div>
+        <div class="flex flex-column gap-2 w-6">
+          <label class="text-left text-500 text-sm" for="password">Password</label>
+          <input pInputText id="password"  [(ngModel)]="password" placeholder="Enter password" aria-describedby="password-help" />
+        
+        </div>
+        <div class="flex flex-column gap-2 w-6 justify-content-end align-items-end">
+          <button pButton pRipple label="Save" (click)="signup()" class="p-button-success"></button>
+      </div>
+      </div>
+    </div>
+    <div class="col-5 h-full">
+      <div class="flex justify-content-end border-round-sm h-full font-bold w-full relative ">
+        <img src="../../assets/signup.png" alt="" class="absolute w-full h-full border-round-xl"/>
+      </div>
+    </div>
+  </div>
+ 
+  </div>
+  

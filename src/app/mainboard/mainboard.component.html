@@ -1,0 +1,199 @@
+<div class="flex flex-column w-full h-full p-2">
+  <p-panel
+    class="flex w-full h-full"
+    styleClass="w-full flex h-full flex-column  justify-content-center "
+  >
+    <ng-template pTemplate="header">
+      <div class="flex w-full align-items-center justify-content-around">
+        <img src="../../assets/logo.png" height="40" class="mr-2" />
+
+        <div class="flex font-bold column-gap-4">
+          <span class="cursor-pointer" (click)="favorite('main')">Home</span>
+
+          <span class="cursor-pointer" (click)="favorite('favorites')">Favorites</span>
+          <span class="cursor-pointer" (click)="logout()">Logout</span>
+        </div>
+      </div>
+    </ng-template>
+
+    <div
+      class="flex w-full flex-column h-full justify-content-start align-items-center"
+    >
+      <!-- Main Page -->
+      @if (selectPage!=="favorites") {
+
+      <div class="flex flex-column w-6 h-full">
+        <div class="grid mb-3">
+          <div class="col-3">
+            <span class="p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input type="text" [(ngModel)]="selectedName" pInputText placeholder="Filter by name.." />
+            </span>
+          </div>
+          <div class="col-3">
+           
+            <p-dropdown
+            appendTo="body"
+            [(ngModel)]="selectedStatus"
+
+              [options]="status"
+              optionLabel="name"
+              [showClear]="true"
+              placeholder="Status"
+            ></p-dropdown>
+          </div>
+
+          <div class="col-3">
+            <p-dropdown
+            appendTo="body"
+            [(ngModel)]="selectedGender"
+
+              [options]="gender"
+              optionLabel="name"
+              [showClear]="true"
+              placeholder="Gender"
+            ></p-dropdown>
+          </div>
+
+          <div class="col-3">
+            <p-button label="Filtrele" [outlined]="true" icon="pi pi-filter" (click)="getFilteredCharacters()" severity="success"></p-button>
+          </div>
+        </div>
+        <div class="grid h-full overflow-y-auto" id="style-15">
+          <ng-container>
+            @for (item of characters; track item.id) {
+
+            <div class="col-3">
+              <div class="cardCss flex flex-column w-full h-full">
+                <img [src]="item.image" alt="" />
+                <div class="flex flex-column p-2 text-sm">
+                  <h3>{{ item.name }}</h3>
+                  <p>Species: {{ item.species }}</p>
+                  <p>Gender: {{ item.gender }}</p>
+                  <p>Status: {{ item.status }}</p>
+                </div>
+                <div
+                  class="flex justify-content-around align-items-center mt-auto mb-4"
+                >
+                  <p-button
+                    [rounded]="true"
+                    [text]="true"
+                    [raised]="true"
+                    severity="secondary "
+                    class="h-4"
+                    styleClass="text-sm"
+                    routerLink="/details/{{ item.id }}"
+                  >
+                    <i class="pi pi-arrow-right mr-2"></i>
+                    <span>Details</span>
+                  </p-button>
+
+                  <p-button
+                    (click)="getFavorite(item)"
+                    [rounded]="true"
+                    [text]="true"
+                    [raised]="true"
+                    severity="secondary "
+                    class="h-4"
+                  >
+                    <i
+                      [class]="
+                         item.favori==true ? 'pi pi-heart-fill' : 'pi pi-heart'
+                      "
+                    ></i>
+                  </p-button>
+                </div>
+              </div>
+            </div>
+            }
+          </ng-container>
+        </div>
+        <div class="w-full grid">
+          <p-paginator
+            class="w-full flex justify-content-center align-items-center"
+            (onPageChange)="onPageChange($event)"
+            [first]="pageNumber"
+            [totalRecords]="120"
+            [rows]="1"
+          ></p-paginator>
+        </div>
+      </div>
+    }
+    @else {
+      <!-- Favorit -->
+      <div class="flex flex-column w-6 h-full">
+        @if (favorichracters.length>0) {
+        <div class="grid h-full overflow-y-auto" id="style-15">
+         
+          <ng-container>
+            @for (item of favorichracters; track item.id) {
+
+            <div class="col-3">
+              <div class="cardCss flex flex-column w-full h-full">
+                <img [src]="item.image" alt="" />
+                <div class="flex flex-column p-2 text-sm">
+                  <h3>{{ item.name }}</h3>
+                  <p>Species: {{ item.species }}</p>
+                  <p>Gender: {{ item.gender }}</p>
+                  <p>Status: {{ item.status }}</p>
+                </div>
+                <div
+                  class="flex justify-content-around align-items-center mt-auto mb-4"
+                >
+                  <p-button
+                    [rounded]="true"
+                    [text]="true"
+                    [raised]="true"
+                    severity="secondary "
+                    class="h-4"
+                    styleClass="text-sm"
+                    routerLink="/details/{{ item.id }}"
+                  >
+                    <i class="pi pi-arrow-right mr-2"></i>
+                    <span>Details</span>
+                  </p-button>
+
+                  <p-button
+                    (click)="getFavorite(item)"
+                    [rounded]="true"
+                    [text]="true"
+                    [raised]="true"
+                    severity="secondary "
+                    class="h-4"
+                  >
+                    <i
+                      [class]="
+                        item.favori==true ? 'pi pi-heart-fill' : 'pi pi-heart'
+                      "
+                    ></i>
+                  </p-button>
+                </div>
+              </div>
+            </div>
+            }
+          </ng-container>
+        </div>
+        <div class="w-full grid">
+          <p-paginator
+            class="w-full flex justify-content-center align-items-center"
+            (onPageChange)="onPageChange($event)"
+            [first]="pageNumber"
+            [totalRecords]="120"
+            [rows]="1"
+          ></p-paginator>
+        </div>
+      }
+      @else {
+        <div class="flex h-full w-full justify-content-center align-items-center">Favori Karakteriniz yok.</div>
+      }
+
+      </div>
+    }
+
+    </div>
+
+    <ng-template pTemplate="footer">
+      Copyright © SinanCaydibi 2024. Tüm hakları saklıdır.
+    </ng-template>
+  </p-panel>
+</div>

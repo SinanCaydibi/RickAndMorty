@@ -1,0 +1,62 @@
+<div class="flex w-full h-full p-6">
+  <div class="grid h-full w-full cardCss">
+    <div
+      class="flex flex-column w-full h-full justify-content-center align-items-center"
+    >
+      @if (character) {
+      <div class="grid h-full w-full">
+        <div class="col">
+          <div class="text-center p-3  gap-4 flex flex-column">
+            <img [src]="character.image" alt="" />
+            <p-fieldset legend="Chracter Name">
+              <span>{{ character.name }}</span>
+            </p-fieldset>
+           
+          </div>
+        </div>
+        <div class="col">
+          <div class="text-center p-3 gap-4 flex flex-column">
+           
+            <p-fieldset legend="Gender">
+              <span> {{ character.gender }}</span>
+            </p-fieldset>
+            <p-fieldset legend="Status">
+              <span> {{ character.status }}</span>
+            </p-fieldset>
+            <p-fieldset legend="Specie">
+              <span> {{ character.species }}</span>
+            </p-fieldset>
+            <p-fieldset legend="Created">
+              <span> {{ character.created }}</span>
+            </p-fieldset>
+          </div>
+        </div>
+        <div class="col">
+          <div class="text-center p-3 gap-4 flex flex-column">
+            <p-fieldset legend="Origin Name">
+              <span> {{ character.origin.name }}</span>
+            </p-fieldset>
+            <p-fieldset legend="Url">
+              <span> {{ character.origin.url }}</span>
+            </p-fieldset>
+            <p-fieldset legend="Location">
+              <span> {{ character.location.name }}</span>
+            </p-fieldset>
+            <p-fieldset legend="Location url">
+              <span> {{ character.location.url }}</span>
+            </p-fieldset>
+            <p-divider></p-divider>
+            <p-button icon="pi pi-arrow-left" label="Back" (click)="backMain()"  [rounded]="true" severity="secondary" [outlined]="true"></p-button>
+
+
+          </div>
+        </div>
+      </div>
+  
+      } @else {
+      <div>Bulunamadı</div>
+      }
+    </div>
+  </div>
+</div>
+

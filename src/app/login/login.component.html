@@ -1,0 +1,61 @@
+<div class="flex w-full h-full align-items-center justify-content-center p-4">
+  <div class="grid h-full w-full cardCss">
+    <div class="col-7">
+      <div
+        class="text-center p-3 border-round-sm h-full flex flex-column justify-content-center align-items-center font-bold gap-4"
+      >
+        <label class="text-6xl">Login</label>
+  
+        <div class="flex flex-column gap-2 w-6">
+          <label class="text-left text-500 text-sm" for="email">Email</label>
+          <input
+            pInputText
+            id="username"
+            [(ngModel)]="email"
+            placeholder="Enter email"
+            aria-describedby="username-help"
+          />
+        </div>
+        <div class="flex flex-column gap-2 w-6">
+          <label class="text-left text-500 text-sm" for="password"
+            >Password</label
+          >
+          <input
+            pInputText
+            id="password"
+            [(ngModel)]="password"
+            placeholder="Enter password"
+            aria-describedby="username-help"
+          />
+        </div>
+        <div
+          class="flex flex-column gap-2 w-6 justify-content-end align-items-end"
+        >
+          <button pButton pRipple (click)="login()" label="Login" class="p-button-success"></button>
+        </div>
+      </div>
+    </div>
+    <div class="col-5 h-full">
+      <div
+        class="flex justify-content-end border-round-sm h-full font-bold w-full h-full relative"
+      >
+        <img
+          src="../../assets/login.png"
+          alt=""
+          class="flex w-full h-full centered-image border-round-xl"
+        />
+        <div  class="centered-image" >
+          <img
+          src="../../assets/loginTwo.png"
+          alt=""
+          class="flex w-full "
+        />
+  
+        <img src="../../assets/mainboard.png" alt=""/>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+ 
+</div>
