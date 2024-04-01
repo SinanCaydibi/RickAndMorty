@@ -19,18 +19,28 @@ export class CharacterService {
   //   return this.http.get<Character>(url);
   // }
 
-  public getCharacterByURL(url: string): Observable<Character[]> {
-    return this.http.get<Character[]>(url);
+public getCharacterByURL(url: string): Observable<Character[]> {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('JWT_TOKEN'),
+    });
+    return this.http.get<Character[]>(url, { headers });
   }
 
   public getPageCharacters(page: number): Observable<Info<Character[]>> {
-    return this.http.get<Info<Character[]>>(this.CHARACTER_PAGE_API + page);
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('JWT_TOKEN'),
+    });
+    return this.http.get<Info<Character[]>>(this.CHARACTER_PAGE_API + page, {
+      headers,
+    });
   }
 
-
   //Detay için
-  public getCharacters(id:number): Observable<Info<Character>>{
-    return this.http.get<Info<Character>>(this.CHARACTER + id);
+  public getCharacters(id: number): Observable<Info<Character>> {
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + localStorage.getItem('JWT_TOKEN'),
+    });
+    return this.http.get<Info<Character>>(this.CHARACTER + id, { headers });
   }
 
 
